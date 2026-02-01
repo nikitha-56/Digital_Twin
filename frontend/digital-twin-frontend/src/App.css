@@ -1,0 +1,39 @@
+body, .app-container {
+  color: black;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  background: #f2f4f8;
+}
+
+.dashboard {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 300px;
+}
+
+.center-row {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.pond-view {
+  flex: 2;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: black;
+}
