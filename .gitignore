@@ -3,9 +3,14 @@ frontend/node_modules/
 
 # Backend
 backend/venv/
-backend/__pycache__/
-backend/*.pyc
 
-# General
+# Python cache (ALL levels)
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
 .env
+
+# OS
 .DS_Store
