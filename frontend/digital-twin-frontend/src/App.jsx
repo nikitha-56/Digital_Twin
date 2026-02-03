@@ -9,9 +9,13 @@ import "./App.css";
 function App() {
   return (
     <div className="app-container">
+
+      {/* LEFT SIDEBAR */}
       <Sidebar />
 
+      {/* RIGHT FULL SCREEN WHITE DASHBOARD */}
       <div className="dashboard">
+
         <HeaderBar />
 
         <TopKPI />
@@ -20,13 +24,14 @@ function App() {
           <HealthIndicators />
 
           <div className="pond-view">
-            <h3>3D Pond View </h3>
+            <h3>3D Pond View</h3>
           </div>
 
           <AlertPanel />
         </div>
 
         <DataTable />
+
       </div>
     </div>
   );

@@ -1,39 +1,71 @@
-body, .app-container {
-  color: black;
-  font-family: sans-serif;
-  line-height: 1.5;
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #0f172a;
 }
 
+/* Parent container */
 .app-container {
   display: flex;
+  width: 100vw;
   height: 100vh;
   background: #f2f4f8;
 }
 
-.dashboard {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 300px;
+/* Sidebar width */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #0f172a;
 }
 
+/* MAIN FIX: Full screen white area */
+.dashboard {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  min-height: 100vh;
+  width: calc(100vw - 250px);
+  overflow-y: auto;
+}
+
+/* Top KPI cards row */
+.top-kpi {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* Center row */
 .center-row {
   display: flex;
-  gap: 1rem;
-  align-items: stretch;
+  gap: 16px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.health-indicators {
+  flex: 1;
 }
 
 .pond-view {
   flex: 2;
-  background: #ffffff;
+  background: #f8fafc;
   border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: black;
+  padding: 12px;
+  min-height: 300px;
+}
+
+.alert-panel {
+  flex: 1;
+}
+
+/* Table full width */
+.data-table {
+  margin-top: 16px;
+  width: 100%;
 }
