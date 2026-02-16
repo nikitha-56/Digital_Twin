@@ -3,69 +3,17 @@ html, body, #root {
   padding: 0;
   width: 100%;
   height: 100%;
-  color: #0f172a;
 }
 
-/* Parent container */
 .app-container {
+  width: 100%;
+  height: 100%;
   display: flex;
-  width: 100vw;
-  height: 100vh;
-  background: #f2f4f8;
 }
 
-/* Sidebar width */
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background: #0f172a;
-}
-
-/* MAIN FIX: Full screen white area */
-.dashboard {
+main {
   flex: 1;
-  background: white;
+  overflow: auto;
   padding: 20px;
-  min-height: 100vh;
-  width: calc(100vw - 250px);
-  overflow-y: auto;
 }
 
-/* Top KPI cards row */
-.top-kpi {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
-  margin-top: 12px;
-  width: 100%;
-}
-
-/* Center row */
-.center-row {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  width: 100%;
-}
-
-.health-indicators {
-  flex: 1;
-}
-
-.pond-view {
-  flex: 2;
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 12px;
-  min-height: 300px;
-}
-
-.alert-panel {
-  flex: 1;
-}
-
-/* Table full width */
-.data-table {
-  margin-top: 16px;
-  width: 100%;
-}

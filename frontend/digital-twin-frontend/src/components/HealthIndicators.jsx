@@ -1,4 +1,9 @@
 import React from "react";
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import Chip from '@mui/material/Chip'
 
 const indicators = [
   { name: "pH", status: "Normal", value: "7.4" },
@@ -10,21 +15,19 @@ const indicators = [
 
 const HealthIndicators = () => {
   return (
-    <div
-      style={{
-        background: "white",
-        padding: "10px",
-        borderRadius: "10px",
-        minHeight: "350px",
-      }}
-    >
-      <h3>Health Indicators</h3>
-      {indicators.map((i) => (
-        <div key={i.name} style={{ margin: "10px 0" }}>
-          <strong>{i.name}:</strong> {i.value} — {i.status}
-        </div>
-      ))}
-    </div>
+    <Box sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 1 }}>
+      <Typography variant="h6" sx={{ mb: 2 }}>Health Indicators</Typography>
+      <List>
+        {indicators.map((i) => (
+          <ListItem key={i.name} sx={{ display: 'flex', justifyContent: 'space-between', py: 1 }}>
+            <Box>
+              <Typography variant="body2"><strong>{i.name}:</strong> {i.value}</Typography>
+            </Box>
+            <Chip label={i.status} color="success" size="small" />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
   );
 };
 

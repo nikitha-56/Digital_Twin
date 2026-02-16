@@ -1,34 +1,37 @@
-import React from "react";
+import React from 'react';
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 
 const kpis = [
-  { label: "pH", value: "7.4" },
-  { label: "DO", value: "5.8 mg/L" },
-  { label: "Temperature", value: "28.6°C" },
-  { label: "NH3", value: "0.08 mg/L" },
-  { label: "ORP", value: "-250 mV" },
-  { label: "Salinity", value: "20 ppt" },
-  { label: "Biomass", value: "1500 kg" },
+  { label: 'pH', value: '7.4' },
+  { label: 'DO', value: '5.8 mg/L' },
+  { label: 'Temperature', value: '28.6°C' },
+  { label: 'NH3', value: '0.08 mg/L' },
+  { label: 'ORP', value: '-250 mV' },
+  { label: 'Salinity', value: '20 ppt' },
+  { label: 'Biomass', value: '1500 kg' },
 ];
 
 const TopKPI = () => {
   return (
-    <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+    <Box sx={{ display: 'flex', gap: 1, overflow: 'auto', pb: 1 }}>
       {kpis.map((item) => (
-        <div
+        <Paper
           key={item.label}
-          style={{
-            flex: 1,
-            background: "white",
-            padding: "10px",
-            borderRadius: "10px",
-            boxShadow: "0 0 5px rgba(0,0,0,0.1)",
+          sx={{
+            flex: '0 0 auto',
+            minWidth: 120,
+            p: 2,
+            textAlign: 'center',
+            bgcolor: 'background.paper',
           }}
         >
-          <h4>{item.label}</h4>
-          <h2>{item.value}</h2>
-        </div>
+          <Typography variant='caption' color='textSecondary'>{item.label}</Typography>
+          <Typography variant='h6'>{item.value}</Typography>
+        </Paper>
       ))}
-    </div>
+    </Box>
   );
 };
 

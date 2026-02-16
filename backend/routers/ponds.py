@@ -1,39 +1,27 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from datetime import datetime
-
 from models.schemas import PondCreate, Pond
-from services.storage import pond_db
+from services import storage
 
 router = APIRouter()
 
 
 @router.post("/ponds", response_model=Pond, tags=["ponds"]) 
-def create_pond(pond: PondCreate):
-    pond_id = len(pond_db) + 1
-
-    new_pond = Pond(
-        id=pond_id,
-        name=pond.name,
-        shape=pond.shape,
-        area=pond.area,
-        depth=pond.depth,
-        created_at=datetime.utcnow()
-    )
-
-    pond_db.append(new_pond)
-    return new_pond
+async def create_pond(pond: PondCreate):
+    p = await storage.create_pond(pond.name, pond.shape, pond.area, pond.depth)
+    # map DB pond to return schema
+    return Pond(id=p.id, name=p.name, shape=p.shape, area=p.area, depth=p.depth, created_at=p.created_at)
 
 
 @router.get("/ponds", response_model=List[Pond], tags=["ponds"])
-def get_all_ponds():
-    return pond_db
+async def get_all_ponds():
+    ps = await storage.list_ponds()
+    return [Pond(id=p.id, name=p.name, shape=p.shape, area=p.area, depth=p.depth, created_at=p.created_at) for p in ps]
 
 
 @router.get("/ponds/{pond_id}", response_model=Pond, tags=["ponds"])
-def get_pond(pond_id: int):
-    for pond in pond_db:
-        if pond.id == pond_id:
-            return pond
-
-    raise HTTPException(status_code=404, detail="Pond not found")
+async def get_pond(pond_id: int):
+    p = await storage.get_pond(pond_id)
+    if p is None:
+        raise HTTPException(status_code=404, detail="Pond not found")
+    return Pond(id=p.id, name=p.name, shape=p.shape, area=p.area, depth=p.depth, created_at=p.created_at)

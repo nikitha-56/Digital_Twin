@@ -7,7 +7,8 @@ backend/venv/
 # Python cache (ALL levels)
 __pycache__/
 *.pyc
-*.pyo
+venv/
+
 
 # Environment
 .env
