@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from sqlalchemy import Column, String, Float, DateTime, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
@@ -29,7 +28,6 @@ class WaterLog(Base):
     dissolved_oxygen = Column(Float)
     ammonia = Column(Float)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
-=======
 from sqlalchemy import Table, Column, Integer, String, Float, DateTime, ForeignKey, JSON, Text
 from sqlalchemy.orm import registry, relationship
 from datetime import datetime
@@ -136,4 +134,3 @@ mapper_registry.map_imperatively(WaterReading, water_table)
 mapper_registry.map_imperatively(DiseaseLog, disease_log_table)
 mapper_registry.map_imperatively(FeedLog, feed_log_table)
 mapper_registry.map_imperatively(SimulationRun, simulation_table)
->>>>>>> 980f10b (enhanced logic part)

@@ -10,10 +10,12 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import TextField from '@mui/material/TextField'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
 const initialPonds = [
-  { id: 1, name: 'Pond A', area: 500 },
-  { id: 2, name: 'Pond B', area: 320 },
+  { id: 1, name: 'Pond A', area: 500, shape: 'rectangular', depth: 2 },
+  { id: 2, name: 'Pond B', area: 320, shape: 'circular', depth: 1.5 },
 ]
 
 export default function PondManagement() {
@@ -29,7 +31,7 @@ export default function PondManagement() {
   const [editing, setEditing] = useState(null)
 
   const handleAdd = () => {
-    setEditing({ name: '', area: 100 })
+    setEditing({ name: '', area: 100, shape: 'rectangular', depth: 1 })
     setOpen(true)
   }
 
@@ -46,7 +48,7 @@ export default function PondManagement() {
     } else {
       // call backend to create
       import('../services/api').then(mod => {
-        mod.createPond(editing).then(created => setPonds(ps => [...ps, created])).catch(()=>{})
+        mod.createPond(editing).then(() => mod.fetchPonds().then(data => setPonds(data))).catch(()=>{})
       })
     }
     setOpen(false)
@@ -79,6 +81,11 @@ export default function PondManagement() {
         <DialogContent>
           <TextField label="Name" fullWidth sx={{ mt: 1 }} value={editing?.name || ''} onChange={e => setEditing({ ...editing, name: e.target.value })} />
           <TextField label="Area (m²)" type="number" fullWidth sx={{ mt: 1 }} value={editing?.area || ''} onChange={e => setEditing({ ...editing, area: Number(e.target.value) })} />
+          <Select label="Shape" fullWidth sx={{ mt: 1 }} value={editing?.shape || 'rectangular'} onChange={e => setEditing({ ...editing, shape: e.target.value })}>
+            <MenuItem value="rectangular">Rectangular</MenuItem>
+            <MenuItem value="circular">Circular</MenuItem>
+          </Select>
+          <TextField label="Depth (m)" type="number" fullWidth sx={{ mt: 1 }} value={editing?.depth || ''} onChange={e => setEditing({ ...editing, depth: Number(e.target.value) })} />
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
             <Button onClick={() => setOpen(false)}>Cancel</Button>
             <Button onClick={handleSave} variant="contained" sx={{ ml: 1 }}>Save</Button>

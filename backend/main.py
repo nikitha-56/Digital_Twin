@@ -1,9 +1,8 @@
 from fastapi import FastAPI
-<<<<<<< HEAD
+
 from routers import ponds, water, digital_twin
 from db.database import engine
 from db.models import Base
-=======
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from routers import ponds, water, digital_twin, simulate, analytics
@@ -18,7 +17,6 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown
     await engine.dispose()
->>>>>>> 980f10b (enhanced logic part)
 
 app = FastAPI(
     title="Aquaculture Digital Twin Backend",

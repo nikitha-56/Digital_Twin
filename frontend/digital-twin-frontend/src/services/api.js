@@ -8,7 +8,8 @@ export async function fetchPonds(){
 }
 
 export async function createPond(p){
-	const r = await API.post('/ponds', p)
+	const { name, shape, area, depth } = p
+	const r = await API.post('/ponds', { name, shape, area, depth })
 	return r.data
 }
 
