@@ -2,15 +2,23 @@ import axios from 'axios'
 
 const API = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000' })
 
-export async function fetchPonds(){
-	const r = await API.get('/ponds')
-	return r.data
+// Events
+export async function fetchEvents(limit = 100, offset = 0) {
+  const r = await API.get('/api/v1/events/', { params: { limit, offset } })
+  return r.data
 }
 
-export async function createPond(p){
-	const { name, shape, area, depth } = p
-	const r = await API.post('/ponds', { name, shape, area, depth })
-	return r.data
+// Ponds
+export async function fetchPonds(customer_uid = null, search = null) {
+  const r = await API.get('/api/v1/pond/all', {
+    params: { customer_uid, search }
+  })
+  return r.data
+}
+
+export async function createPond(data) {
+  const r = await API.post('/api/v1/pond/add', data)
+  return r.data
 }
 
 export async function submitWater(pond_id, reading){
