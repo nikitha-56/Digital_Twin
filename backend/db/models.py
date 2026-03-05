@@ -13,11 +13,6 @@ class User(Base):
     role = Column(String)
     is_active = Column(Boolean, default=True)
 
-class Pond(Base):
-    __tablename__ = "ponds"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String)
-    location = Column(String)
 
 class WaterLog(Base):
     __tablename__ = "water_logs"
@@ -38,11 +33,43 @@ metadata = mapper_registry.metadata
 pond_table = Table(
     "ponds",
     metadata,
-    Column("id", Integer, primary_key=True, index=True),
-    Column("name", String, nullable=False),
-    Column("shape", String),
-    Column("area", Float),
-    Column("depth", Float),
+    Column("id", String(36), primary_key=True, index=True),
+    Column("pond_name", String),
+    Column("water_body", String),
+    Column("water_type", String),
+    Column("pond_type", String),
+    Column("temperature", Float),
+    Column("city", String),
+    Column("shrimp_type", String),
+    Column("shrimp_stage", String),
+    Column("shrimp_size", Float),
+    Column("stocking_datetime", DateTime),
+    Column("stocking_density", Float),
+    Column("nitrate", Float),
+    Column("turbidity", Float),
+    Column("humidity", Float),
+    Column("feed_type", String),
+    Column("soil_type", String),
+    Column("pond_ownership", String),
+    Column("pond_area", Float),
+    Column("pond_area_unit", String),
+    Column("pond_depth", Float),
+    Column("pond_depth_unit", String),
+    Column("pond_shape", String),
+    Column("pond_length", Float),
+    Column("pond_width", Float),
+    Column("pond_radius", Float),
+    Column("latitude", Float),
+    Column("longitude", Float),
+    Column("ph", Float),
+    Column("oxygen", Float),
+    Column("salinity", Float),
+    Column("nh3", Float),
+    Column("prawns_per_acre", Float),
+    Column("avg_weight_g", Float),
+    Column("seed_source", String),
+    Column("tds", Float),
+    Column("orp", Float),
     Column("created_at", DateTime, default=datetime.utcnow),
 )
 
