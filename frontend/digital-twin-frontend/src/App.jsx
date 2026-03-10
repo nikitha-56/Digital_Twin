@@ -22,6 +22,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ponds" element={<PondManagement />} />
           <Route path="/digital-twin" element={<DigitalTwin />} />
+          <Route path="/digital-twin/:pondId" element={<DigitalTwin />} />
           <Route path="/water" element={<WaterMonitoring />} />
           <Route path="/disease" element={<DiseasePrediction />} />
           <Route path="/simulations" element={<Simulation />} />

@@ -37,3 +37,48 @@ export async function runSimulate(pond_id, adjustments, hours=24){
 }
 
 export default API
+
+// ─────────────────────────────────────────────────────────────
+//  ADD THESE 3 FUNCTIONS to the bottom of your existing api.js
+// ─────────────────────────────────────────────────────────────
+
+// Digital Twin — main fusion data
+export async function fetchDigitalTwin(pond_id) {
+  const r = await API.get(`/digital-twin/${pond_id}`)
+  return r.data
+}
+
+// What-If simulation
+// IMPORTANT: "do" is a JS reserved word — we build params with bracket notation
+export async function runWhatIf(pond_id, params = {}) {
+  // Build URLSearchParams manually to safely include "do" as a key
+  const searchParams = new URLSearchParams()
+  for (const [key, val] of Object.entries(params)) {
+    if (val !== undefined && val !== null) {
+      searchParams.append(key, val)
+    }
+  }
+  // Use axios with params as URLSearchParams object — avoids "do" reserved word issues
+  const r = await API.get(`/digital-twin/${pond_id}/what-if`, {
+    params: searchParams,
+  })
+  return r.data
+}
+
+// Mock disease score (for shrimp behavior)
+export async function fetchDiseaseScore(pond_id) {
+  const r = await API.get(`/mock/disease-score/${pond_id}`)
+  return r.data
+}
+
+// ── ADD THESE to your existing api.js ────────────────────────────────────────
+
+export async function updatePond(pond_id, data) {
+  const r = await API.put(`/api/v1/pond/${pond_id}`, data)
+  return r.data
+}
+
+export async function deletePond(pond_id) {
+  const r = await API.delete(`/api/v1/pond/${pond_id}`)
+  return r.data
+}
